@@ -14,11 +14,11 @@
     <h2>Efetue seu login</h2>
 
     <form action="">
-        <input class="input" type="text" name="usuario" placeholder="Login...">
+        <input  type="text" name="usuario" placeholder="Login...">
 
-        <input class="input" type="password" name="senha" placeholder="Senha!">
+        <input  type="password" name="senha" placeholder="Senha!">
 
-        <input class="input" type="button" value="Acessar">
+        <input class="btn" type="button" value="Acessar">
     </form>
 
     <p>Caso não seja cadastrado, <a href="cadastro.php">Clique aqui.</a> </p>
