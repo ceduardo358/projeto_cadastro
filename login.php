@@ -10,17 +10,23 @@
 <body>
 
     <?php
+        session_start();
         require "config.php";
 
         if(isset($_POST['nome']) && empty($_POST['nome']) == false) {
             $nome = addslashes($_POST['nome']);
-            $email = addslashes($_POST['email']);
+            //$email = addslashes($_POST['email']);
             $senha = md5(addslashes($_POST['senha']));
 
-            $sql = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
-            $sql = $pdo->query($sql);
+            $sql = $pdo->query("SELECT * FROM usuarios WHERE nome = '$nome' AND senha = '$senha'");
+            if($sql->rowCount() > 0) {
+                $dado = $sql->fetch();
 
-            header("Location: index.php");
+                $_SESSION['id'] = $dado['id'];
+                
+            }
+
+           header("Location: index.php");
 
             
         }

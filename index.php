@@ -8,7 +8,16 @@
 </head>
 <body>
 
+    <?php
+        session_start();
 
+        if(isset($_SESSION['id']) && empty($_SESSION['id']) == false) {
+            echo "Área restrita...";
+        } else {
+            header("Location: login.php");
+        }
+
+    ?>
     <h2>Realize o Login!</h2>
 
     <a href="login.php">Fazer login!</a> <br>
