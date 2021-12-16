@@ -8,18 +8,35 @@
     <title>Cadastro</title>
 </head>
 <body>
+    <?php
+        require 'config.php';
+
+       if(isset($_POST['nome']) && empty($_POST['nome']) == false) {
+            $nome = addslashes($_POST['nome']);
+            $email = addslashes($_POST['email']);
+            $senha = md5(addslashes($_POST['senha']));
+
+            $sql = "INSERT INTO usuarios SET nome = '$nome', email = '$email', senha = '$senha'";
+            $sql = $pdo->query($sql);
+
+            header("Location: login.php");
+        }
+
+    ?>
+
     <div class="container">
         <h2>Efetue seu Cadastro</h2>
 
-        <form action="">
-            <input  type="text" name="nome" placeholder="Digite seu nome!">
+        <form action="" method="POST">
+            <input  type="text" name="nome" placeholder="Digite seu nome!" required>
 
-            <input type="email" name="email" placeholder="Digite seu E-mail!">
+            <input type="email" name="email" placeholder="Digite seu E-mail!" required>
 
-            <input  type="password" name="senha" placeholder="Digite uma senha!">
+            <input  type="password" name="senha" placeholder="Digite uma senha!" required>
 
-            <input class="btn" type="button" value="Cadastrar">
+            <input class="btn" type="submit" value="Cadastrar" onclick="cadastrado()">
         </form>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
