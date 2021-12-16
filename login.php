@@ -14,16 +14,18 @@
         require "config.php";
 
         if(isset($_POST['nome']) && empty($_POST['nome']) == false) {
+         if(isset($_POST['senha']) && empty($_POST['senha']) == false) {
             $nome = addslashes($_POST['nome']);
-            //$email = addslashes($_POST['email']);
             $senha = md5(addslashes($_POST['senha']));
 
+         }
             $sql = $pdo->query("SELECT * FROM usuarios WHERE nome = '$nome' AND senha = '$senha'");
             if($sql->rowCount() > 0) {
                 $dado = $sql->fetch();
 
                 $_SESSION['id'] = $dado['id'];
                 
+                print_r($dado);
             }
 
            header("Location: index.php");
